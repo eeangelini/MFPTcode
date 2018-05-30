@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{caption}
+
+\author{Erin Angelini}
+\title{Documentation for MFPT code (Matlab)}
+\begin{document}
+\maketitle
+
+\section{Overview of functions}
+\noindent\texttt{solve\_mfpt.m}: This function takes the scale factor \texttt{k} (scales with cell aspect ratio, values stored in \texttt{kValsCtrlAR1p06to2.mat}) and solves the corresponding boundary value problem for the mean first passage time (\textbf{symmetric} energy landscape). There are several possible outputs. The first is \texttt{Y1}, the solution to the BVP. The second is \texttt{Y2}, which is the mean first passage time function (i.e. \texttt{Y1} divided by the splitting probability). The third is \texttt{splitProbs}, which is the splitting probability. All of these outputs are vectors that represent the values of the respective functions evaluated at starting angles $\alpha$ (denoted by the vector \texttt{x = linspace(0,pi)}).
+\\[3pt]
+
+\noindent\texttt{solve\_mfpt\_new.m}: This function takes the scale factors \texttt{k} and \texttt{j} (scale with cell aspect ratio, values stored in \texttt{AsymmValsAR1p06to1p67.mat}) and solves the corresponding boundary value problem for the mean first passage time (\textbf{asymmetric} energy landscape). It has the same possible outputs as \texttt{solve\_mfpt.m}.
+\\[3pt]
+
+\noindent\texttt{BVPplot.m}: This function plots the desired output from \texttt{solve\_mfpt.m} or  \texttt{solve\_mfpt\_new.m} for starting angles $\alpha$ from 0 to $\pi$.
+\\[3pt]
+
+\noindent\texttt{solve\_SAB.m}: This function plots the analytical solution of the single absorbing boundary problem for an absorbing boundary at $b = \pi/2$. It plots it for all possible starting angles $\alpha \in (0,\pi/2).$
+\\[3pt]
+
+\subsection{Inputs \& parameters}
+
+\begin{description}
+\item[\texttt{k} (\texttt{solve\_mfpt.m}):] Scale factor, = \texttt{k\_1*Wmax = 0.001*Wmax}
+\item[\texttt{k} (\texttt{solve\_mfpt\_new.m}):] Scale factor, = \texttt{Wmax}
+\item[\texttt{j} (\texttt{solve\_mfpt\_new.m}):] Scale factor, = \texttt{Wmin}
+\item[\texttt{Y}:] Function (in vector form) to plot via \texttt{BVPplot}
+\end{description}
+
+\subsection{.mat files}
+\noindent\texttt{SplitProbctrl.mat}: Contains a 6$\times$100 matrix whose rows are the splitting probabilities (evaluated from $\alpha = 0$ to $\alpha = \pi$) for the on-center, symmetric spindle (AR = 1.07, 1.133, 1.2, 1.27, 1.33, and 1.4). \\[3pt]
+
+\noindent\texttt{SplitProbasymm.mat}: Contains a 7$\times$100 matrix whose rows are the splitting probabilities (evaluated from $\alpha = 0$ to $\alpha = \pi$) for the off-center, asymmetric spindle (AR = 1.07, 1.133, 1.2, 1.27, 1.33, 1.4, and 1.47).
+\\[3pt]
+
+\noindent\texttt{BVPctrl.mat}: Contains a 6$\times$100 matrix whose rows are the mean first passage time functions (evaluated from $\alpha = 0$ to $\alpha = \pi$) for the on-center, symmetric spindle (AR = 1.07, 1.133, 1.2, 1.27, 1.33, and 1.4). \\[3pt]
+
+\noindent\texttt{BVPasymm.mat}: Contains a 7$\times$100 matrix whose rows are the mean first passage time functions (evaluated from $\alpha = 0$ to $\alpha = \pi$) for the off-center, asymmetric spindle (AR = 1.07, 1.133, 1.2, 1.27, 1.33, 1.4, and 1.47).
+\\[3pt]
+
+\noindent\texttt{kValsCtrlAR1p06to2.mat}: Contains a 1$\times$15 vector \texttt{kvec}, which contains the scale factors $k$ for the on-center, symmetric spindle (AR = \texttt{[16:30]./15}).
+\\[3pt]
+
+\noindent\texttt{AsymmValsAR1p06to1p67.mat}: Contains two 1$\times$10 vectors, \texttt{kvecAsymm} and \texttt{jvecAsymm}, that contain the scale factors $k$ and $j$ (respectively) for the off-center, asymmetric spindle (AR = \texttt{[16:25]./15}).
+
+
+\end{document}
