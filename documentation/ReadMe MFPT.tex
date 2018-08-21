@@ -32,6 +32,8 @@
 \item[\texttt{Y}:] Function (in vector form) to plot via \texttt{BVPplot}
 \end{description}
 
+\noindent For \texttt{solve\_mfpt.m}, the built-in Matlab BVP solver loses accuracy with values of $k$ greater than 26, and does not tolerate values greater than 36. For \texttt{solve\_mfpt\_new.m}, the tolerated inputs are values of $k$ less than 26,000 (values of $j$ do not affect the accuracy of the solver).
+
 \subsection{.mat files}
 \noindent\texttt{SplitProbctrl.mat}: Contains a 6$\times$100 matrix whose rows are the splitting probabilities (evaluated from $\alpha = 0$ to $\alpha = \pi$) for the on-center, symmetric spindle (AR = 1.07, 1.133, 1.2, 1.27, 1.33, and 1.4). \\[3pt]
 
